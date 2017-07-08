@@ -1,0 +1,40 @@
+#############################################################################
+# Makefile for building: ROS_module
+#############################################################################
+
+CXX      = g++
+LINK     = g++
+CXXFLAGS = `pkg-config --cflags roscpp std_msgs sensor_msgs geometry_msgs nav_msgs cv_bridge tf opencv` `pkg-config opencv --cflags opencv` -Wall -W -O2 
+INCPATH  = 
+LIBS     = $(SUBLIBS) `pkg-config --libs opencv` -L/usr/X11R6/lib -lglut -lGLU -lGL -lXi -lXmu -lXext -lX11 `sdl-config --cflags --libs` $(ros_libs_nocolon) 
+ros_libs = $(shell pkg-config --libs roscpp std_msgs sensor_msgs geometry_msgs nav_msgs cv_bridge tf)
+ros_libs_nocolon = $(subst -l:,,$(ros_libs))
+
+####### Output directory
+
+####### Files
+
+HEADERS = 
+SOURCES = ros_main.cpp 
+OBJECTS = ros_main.o 
+
+TARGET   = docu_sim_obstmove
+
+first: all
+####### Implicit rules
+
+.SUFFIXES:.cpp
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $< 
+
+
+all: Makefile $(TARGET)
+
+$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) 
+	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS) 
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+
+
