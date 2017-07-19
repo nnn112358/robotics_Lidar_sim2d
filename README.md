@@ -7,11 +7,6 @@ The moving obstacle disturbs the robot's sensor
 ## movie   
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/JswpOoLeJNY/0.jpg)](http://www.youtube.com/watch?v=JswpOoLeJNY)
 
-## Interface
-
-![IMAGE](https://github.com/nnn112358/rosjp_170719/blob/master/Lidar_cal3.png)
-
-
 ## How To
 
 $ mkdir ~/catkin_ws/src -p   
