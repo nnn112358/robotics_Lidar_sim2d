@@ -9,3 +9,15 @@ The moving obstacle disturbs the robot's sensor
 
 ## Interface
 ![IMAGE](https://github.com/nnn112358/rosjp_170719/blob/master/Lidar_cal3.png)
+
+
+###How To
+$ mkdir ~/catkin_ws/src -p
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/nnn112358/robotics_Lidar_sim2d.git
+$ catkin_init_workspac 
+$ cd ~/catkin_ws/
+$ catkin build 
+
+###Sample
+$ 
