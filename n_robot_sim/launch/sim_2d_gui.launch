@@ -1,0 +1,46 @@
+<launch>
+   <node pkg="n_gui_joystick" type="n_gui_joystick_node" name="n_gui_joystick">
+    <param name="x_gain" value="0.7" />
+    <param name="y_gain" value="0.7" />
+   </node>
+   
+   <node pkg="n_joy2cmd" type="n_joy2cmd_node" name="n_joy2cmd">
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="cmd_vel2" to="cmd_vel2"/>
+    <remap from="cmd_vel4" to="cmd_vel4"/>
+    <param name="scale_linear" value="0.50" />
+    <param name="scale_angular" value="0.50" />
+    <param name="axis_linear_ch" value="1" />
+    <param name="axis_angular_ch" value="0" />
+   </node>
+    
+
+   <node pkg="n_robot_sim" type="n_robot_sim_node" name="n_robot_sim">
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="scan"    to="scan"/>
+
+    <param name="LRF_data_num" value="1024.0" />
+    <param name="LRF_deg" value="240.0" />
+    <param name="LRF_len_max" value="10.0" />
+    <param name="LRF_len_min" value="0.20" />
+    <param name="LRF_leng_stdev" value="0.01" />
+
+    <param name="odom_noise_liner" value="0.02" />
+    <param name="odom_noise_liner_stdev" value="0.01" />
+    <param name="odom_noise_angle" value="0.04" />
+    <param name="odom_noise_angle_stdev" value="0.01" />
+
+    <param name="sim_fps" value="30.0" />
+    <param name="map_fname" value="$(find n_robot_sim)/config/obstacle.csv" />
+    <param name="move_obst_num" value="100" />
+
+   </node>
+
+    <node pkg="n_robot_sim_moveobst" type="n_robot_sim_moveobst_node" name="n_robot_sim_moveobst_node">
+        <param name="speed_gain"  value="2.0" />
+        <param name="turn_gain"  value="1.14" />
+    </node>
+    
+    <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find n_robot_sim)/rviz/sim_view.rviz" />
+</launch>
+

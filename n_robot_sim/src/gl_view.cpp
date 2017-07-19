@@ -67,10 +67,17 @@ int Graphics::main_proc(){
 
 void Graphics::main_draw() {
 
-	double now = get_dtime(); 		//msec
+	double now = get_dtime(); 				//msec
+
+
+	if(gl_mode==0){
 	move_obstacle_view();					//移動障害物
 	robot_view(myrobot);					//Robotの表示
-	lrf_view(myrobot,lrf_data);					//lrfの表示
+	lrf_view(myrobot,lrf_data);				//lrfの表示
+	}
+	else if(gl_mode==1){
+	draw_string("Obstacle_edit:");
+	}
 	obstacle_view();
 
 
@@ -96,6 +103,8 @@ void Graphics::main_draw() {
 		glVertex3f(xx,yy+grid_size,-0.1);
 		glEnd();
 	}
+
+
 
 	return ;
 }
@@ -198,7 +207,7 @@ void Graphics::myMouse( int button, int state, int x, int y ){
 			goal_y=obj_y;
 			goal_x=obj_x;
 
-			if(gl_mode==2){
+			if(gl_mode==1){
 				if((obst.x1[obst.n]==0)&&(obst.y1[obst.n]==0)){
 					obst.x1[obst.n]=obj_x;
 					obst.y1[obst.n]=obj_y;
@@ -216,7 +225,7 @@ void Graphics::myMouse( int button, int state, int x, int y ){
 			break;
 			case GLUT_RIGHT_BUTTON:
 
-			if(gl_mode==2){//obstacle_delete
+			if(gl_mode==1){//obstacle_delete
 				if(obst.n>0){
 					obst.n--;
 					obst.x1[obst.n]=0.0;
@@ -278,10 +287,11 @@ void Graphics::myKbd( unsigned char key, int x, int y )
 		exit(0);
 		break;
 
-//		case 'z':	//モード切り替え
-//		gl_mode++;
-//		myrobot.v=0;
-//		myrobot.w=0;
+		case 'z':	//モード切り替え
+		if(gl_mode==0) 		gl_mode=1;
+		else if(gl_mode==1) 	gl_mode=0;
+		myrobot.v=0;
+		myrobot.w=0;
 		break;
 	}
 }
@@ -367,7 +377,7 @@ void Graphics::click_pickup(int x,int y,double &ax,double &ay,double &az){//マ�
 }
 void Graphics::draw_string(string str, int w, int h, int x0, int y0){
 	glColor3d(0.0, 0.60, 0.0);
-	// glDisable(GL_LIGHTING);
+
 	// 平行投影にする
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -379,6 +389,7 @@ void Graphics::draw_string(string str, int w, int h, int x0, int y0){
 
 	// 画面上にテキスト描画
 	glRasterPos2f(x0, y0);
+	
 	int size = (int)str.size();
 	for(int i = 0; i < size; ++i){
 		char ic = str[i];
