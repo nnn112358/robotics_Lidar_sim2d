@@ -7,7 +7,7 @@ The moving obstacle disturbs the robot's sensor
 ## movie   
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/JswpOoLeJNY/0.jpg)](http://www.youtube.com/watch?v=JswpOoLeJNY)
 
-## How To
+## How To Install
 
 $ mkdir ~/catkin_ws/src -p   
 $ cd ~/catkin_ws/src   
@@ -19,4 +19,4 @@ $ catkin build
 ## Sample
 $ roslaunch n_robot_sim sim_2d_gui.launch   
 
-
+Push "Z" key is MapEditor Mode.
