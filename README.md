@@ -21,5 +21,7 @@ $ catkin_init_workspac
 $ cd ~/catkin_ws/   
 $ catkin build    
 
-###Sample
-$ 
+## Sample
+$ roslaunch n_robot_sim sim_2d_gui.launch   
+
+
