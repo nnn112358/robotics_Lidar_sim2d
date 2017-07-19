@@ -16,9 +16,9 @@ The moving obstacle disturbs the robot's sensor
 
 $ mkdir ~/catkin_ws/src -p   
 $ cd ~/catkin_ws/src   
-$ git clone https://github.com/nnn112358/robotics_Lidar_sim2d.git   
 $ catkin_init_workspace    
 $ cd ~/catkin_ws/   
+$ git clone https://github.com/nnn112358/robotics_Lidar_sim2d.git   
 $ catkin build    
 
 ## Sample
